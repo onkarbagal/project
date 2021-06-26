@@ -23,8 +23,8 @@ public class SwaggerConfig {
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.accolite.course.controller"))
-                .paths(regex("/course.*"))
+                .apis(RequestHandlerSelectors.basePackage("com.course.coursemanagement.controller"))
+                .paths(regex("/.*"))
                 .build()
                 .apiInfo(metaInfo());
     }

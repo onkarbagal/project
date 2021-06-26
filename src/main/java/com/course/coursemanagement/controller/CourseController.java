@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.course.coursemanagement.entities.Courseentity;
 import com.course.coursemanagement.exception.NoContentException;
@@ -30,6 +31,8 @@ public class CourseController {
 
 	@Autowired
 	private CourseRepository cr;
+	
+	RestTemplate rt = new RestTemplate();
 
 	@PostMapping("/save")
 	public ResponseEntity<Course> saveIntocourseItemTable(@RequestBody Course course) {
@@ -62,7 +65,13 @@ public class CourseController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-
+	
+	@GetMapping("/call")
+	public String call() {
+		
+		return rt.getForObject("http://localhost:8082/notify", String.class);
+		
+	}
 	@DeleteMapping("/deletecourse/{id}")
 	public ResponseEntity<HttpStatus> deletecourse(@PathVariable("id") Long id) {
 		try {
