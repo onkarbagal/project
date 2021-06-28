@@ -36,7 +36,8 @@ public class CourseController {
 
 	@PostMapping("/save")
 	public ResponseEntity<Course> saveIntocourseItemTable(@RequestBody Course course) {
-		return new ResponseEntity<>(cs.saveIntocourseItemTable(course), HttpStatus.OK);
+		rt.postForObject("http://localhost:8082/notify", course, String.class);
+		return new ResponseEntity<>(cs.saveData(course), HttpStatus.OK);
 	}
 	
 	@GetMapping(path = "course/{id}")
@@ -66,12 +67,7 @@ public class CourseController {
 		}
 	}
 	
-	@GetMapping("/call")
-	public String call() {
-		
-		return rt.getForObject("http://localhost:8082/notify", String.class);
-		
-	}
+
 	@DeleteMapping("/deletecourse/{id}")
 	public ResponseEntity<HttpStatus> deletecourse(@PathVariable("id") Long id) {
 		try {

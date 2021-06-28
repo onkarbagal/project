@@ -31,9 +31,9 @@ public class CourseService {
 	@Autowired
 	private CreatorRepository creatorRepository;
 
-	public Course saveIntocourseItemTable(Course course) {
+	public Course saveData(Course course) {
 		Courseentity entity = cr.save(mapObjectToEntity(course));
-		return mapEntityToObject(entity);
+		return getdata(entity);
 	}
 
 	public Courseentity mapObjectToEntity(Course course) {
@@ -139,7 +139,7 @@ public class CourseService {
 
 	}
 
-	public Course mapEntityToObject(Courseentity entity) {
+	public Course getdata(Courseentity entity) {
 
 		Course course = new Course();
 		course.setId(entity.getId());
@@ -160,13 +160,13 @@ public class CourseService {
 		if (!entity.isPresent()) {
 			throw new NoContentException(HttpStatus.NO_CONTENT);
 		}
-		return mapEntityToObject(entity.get());
+		return getdata(entity.get());
 
 	}
 
 	public Course updateCourseData(Course course) {
 		Courseentity entity = cr.save(mapObjectToEntity(course));
-		return mapEntityToObject(entity);
+		return getdata(entity);
 
 	}
 
@@ -176,7 +176,7 @@ public class CourseService {
 		if (!entity.isPresent()) {
 			throw new NoContentException(HttpStatus.NO_CONTENT);
 		}
-		return mapEntityToObject(entity.get());
+		return getdata(entity.get());
 
 	}
 	
