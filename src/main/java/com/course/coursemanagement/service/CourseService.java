@@ -180,9 +180,6 @@ public class CourseService {
 
 	}
 	
-	public int demo() {
-		return 10;
-	}
 	
 
 }

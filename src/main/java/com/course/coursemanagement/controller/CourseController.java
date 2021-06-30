@@ -41,7 +41,8 @@ public class CourseController {
 	}
 	
 	@GetMapping(path = "course/{id}")
-	public ResponseEntity<Course> fetchRecordFromcourseTable(@PathVariable("id") Long id) {
+	
+	public ResponseEntity<Course> getdatabyid(@PathVariable("id") Long id) {
 		Course courseData = null;
 		try {
 			courseData = cs.getCourseData(id);
